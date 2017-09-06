@@ -37,7 +37,7 @@ public class CookBookApiController {
 	public CookBookApiController(RecipeRepository repository) {
         this.recipeRepo = recipeRepo;
 	}
-	
+
 	@GetMapping("")
 	public List<Recipe> getAll() {
 		return recipeRepo.findAll();

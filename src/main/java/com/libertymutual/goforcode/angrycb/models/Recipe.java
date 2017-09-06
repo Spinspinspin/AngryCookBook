@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import org.aspectj.apache.bcel.generic.Instruction;
 
@@ -22,7 +24,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 public class Recipe {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_id_seq")
+	@SequenceGenerator(name = "recipe_id_seq", sequenceName="recipe_id_seq")
 	private Long id;
 
 	@Column(nullable = false, length = 75)
@@ -40,8 +43,8 @@ public class Recipe {
 	@Column(nullable = true, length = 255)
 	private String instructions;
 
-	@ManyToMany
-	private List<Recipe> recipes;
+	@OneToMany(mappedBy= "recipe")
+	private List<Ingredients> ingredient;
 
 	public Recipe() {
 	}

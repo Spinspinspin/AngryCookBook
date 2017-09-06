@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -20,7 +22,8 @@ public class Ingredients {
 
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ingredient_id_seq")
+	@SequenceGenerator(name = "ingredient_id_seq", sequenceName="ingredient_id_seq")
 	private Long ingredientId;
 
 	@Column(nullable = false, length = 75)
@@ -38,8 +41,8 @@ public class Ingredients {
 	@Column(nullable = true, length = 255)
 	private int quantity;
 	
-	@ManyToMany(mappedBy= "recipes")
-	private List<Ingredients> ingredients;
+	@ManyToOne
+	private Recipe recipe;
 
 	public Ingredients() {}
 
@@ -61,13 +64,13 @@ public class Ingredients {
 		this.ingredientId = ingredientId;
 	}
 
-	public List<Ingredients> getIngredients() {
-		return ingredients;
-	}
-
-	public void setIngredients(List<Ingredients> ingredients) {
-		this.ingredients = ingredients;
-	}
+//	public List<Ingredients> getIngredients() {
+//		return ingredients;
+//	}
+//
+//	public void setIngredients(List<Ingredients> ingredients) {
+//		this.ingredients = ingredients;
+//	}
 
 	public String getTitle() {
 		return title;
