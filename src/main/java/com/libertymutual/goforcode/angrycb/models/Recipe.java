@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.aspectj.apache.bcel.generic.Instruction;
 
@@ -39,6 +40,7 @@ public class Recipe {
 	@Column(nullable = true, length = 255)
 	private String instructions;
 
+	@ManyToMany
 	private List<Recipe> recipes;
 
 	public Recipe() {

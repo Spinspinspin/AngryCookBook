@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -35,7 +37,8 @@ public class Ingredients {
 
 	@Column(nullable = true, length = 255)
 	private int quantity;
-
+	
+	@ManyToMany(mappedBy= "recipes")
 	private List<Ingredients> ingredients;
 
 	public Ingredients() {}

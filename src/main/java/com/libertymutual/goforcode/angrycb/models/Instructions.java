@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -20,16 +22,19 @@ public class Instructions {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long instructionId;
 
-	@Column(nullable = false, length = 1000)
-	private String instructions;
+	@Column(nullable = false, length = 255)
+	private String step;
+	
+	
+	@ManyToMany(mappedBy="recipies")
+	private List<Instructions> instructions;
+	
+	public Instructions() {}
 
-	public Instructions() {
+	public Instructions(String step) {
+		this.step = step;
 	}
-
-	public Instructions(String instructions) {
-		this.instructions = instructions;
-	}
-
+	
 	// getters and setters
 
 	public Long getId() {
@@ -40,11 +45,11 @@ public class Instructions {
 		this.instructionId = instructionId;
 	}
 
-	public String getInstructions() {
+	public List<Instructions> getInstructions() {
 		return instructions;
 	}
 
-	public void setInstructions(String instructions) {
+	public void setIngredients(List<Instructions> instructions) {
 		this.instructions = instructions;
 
 	}
