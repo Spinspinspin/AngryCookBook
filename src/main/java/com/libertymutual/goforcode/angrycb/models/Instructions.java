@@ -11,14 +11,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "ing_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "instructionId")
 @Entity
 
 public class Instructions {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long ins_id;
+	private Long instructionId;
 
 	@Column(nullable = false, length = 1000)
 	private String instructions;
@@ -33,11 +33,11 @@ public class Instructions {
 	// getters and setters
 
 	public Long getId() {
-		return ins_id;
+		return instructionId;
 	}
 
 	public void setId(Long id) {
-		this.ins_id = ins_id;
+		this.instructionId = instructionId;
 	}
 
 	public String getInstructions() {

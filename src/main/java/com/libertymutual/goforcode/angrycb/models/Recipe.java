@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.aspectj.apache.bcel.generic.Instruction;
+
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -95,6 +98,16 @@ public class Recipe {
 
 	public void setInstructions(String instructions) {
 		this.instructions = instructions;
+	}
+
+	public void addIngredients(Ingredients ingredient) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addInstructions(Instructions instruction) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "ing_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "ingredientId")
 @Entity
 
 public class Ingredients {
@@ -19,7 +19,7 @@ public class Ingredients {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long ing_id;
+	private Long ingredientId;
 
 	@Column(nullable = false, length = 75)
 	private String title;
@@ -51,11 +51,11 @@ public class Ingredients {
 	// getters and setters
 
 	public Long getId() {
-		return ing_id;
+		return ingredientId;
 	}
 
 	public void setId(Long id) {
-		this.ing_id = ing_id;
+		this.ingredientId = ingredientId;
 	}
 
 	public List<Ingredients> getIngredients() {
