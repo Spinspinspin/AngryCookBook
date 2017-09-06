@@ -34,7 +34,7 @@ public class CookBookApiController {
 	private IngredientRepository ingredientRepo;
 	private InstructionRepository instructionRepo;
 	
-	public CookBookApiController(RecipeRepository repository) {
+	public CookBookApiController(RecipeRepository recipeRepo) {
         this.recipeRepo = recipeRepo;
 	}
 
