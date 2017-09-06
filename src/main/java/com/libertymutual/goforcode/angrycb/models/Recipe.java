@@ -36,7 +36,7 @@ public class Recipe {
 	@Column(nullable = true, length = 255)
 	private String instructions;
 
-	private List<Recipe> recipess;
+	private List<Recipe> recipes;
 
 	public Recipe() {
 	}
@@ -57,4 +57,67 @@ public class Recipe {
 		this.id = id;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String getdescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public double numberOfMinutes() {
+		return numberOfMinutes;
+	}
+
+	public void setNumberOfMinutes(double numberOfMinutes) {
+		this.numberOfMinutes = numberOfMinutes;
+	}
+	
+	public String getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(String ingredients) {
+		this.ingredients = ingredients;
+	}
+	
+	public String getInstructions() {
+		return instructions;
+	}
+
+	public void setInstructions(String instructions) {
+		this.instructions = instructions;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
