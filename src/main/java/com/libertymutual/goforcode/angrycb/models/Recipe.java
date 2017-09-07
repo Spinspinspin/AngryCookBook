@@ -36,16 +36,18 @@ public class Recipe {
 
 	@Column(nullable = true)
 	private double numberOfMinutes;
-
-//	@Column(nullable = true)
-//	private List<Ingredients> ingredients;
-//
-//	@Column(nullable = true, length = 255)
-//	private List<Instructions> instructions;
-
+	
 	@OneToMany(mappedBy= "recipe")
+	@Column(nullable = true)
 	private List<Ingredients> ingredients;
+	
+	@OneToMany(mappedBy= "recipe")
+	@Column(nullable = true, length = 255)
 	private List<Instructions> instructions;
+
+//	@OneToMany(mappedBy= "recipe")
+//	private List<Ingredients> ingredients;
+//	private List<Instructions> instructions;
 
 	public Recipe() {
 	}
