@@ -84,7 +84,7 @@ public class Recipe {
 		this.description = description;
 	}
 	
-	public double numberOfMinutes() {
+	public double getNumberOfMinutes() {
 		return numberOfMinutes;
 	}
 

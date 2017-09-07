@@ -40,12 +40,36 @@ public class Instructions {
 	
 	// getters and setters
 
-	public Long getId() {
+//	public Long getId() {
+//		return instructionId;
+//	}
+//
+//	public void setId(Long id) {
+//		this.instructionId = instructionId;
+//	}
+
+	public Long getInstructionId() {
 		return instructionId;
 	}
 
-	public void setId(Long id) {
+	public void setInstructionId(Long instructionId) {
 		this.instructionId = instructionId;
+	}
+
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 //	public List<Instructions> getInstructions() {
