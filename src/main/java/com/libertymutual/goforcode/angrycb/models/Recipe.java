@@ -37,19 +37,20 @@ public class Recipe {
 	@Column(nullable = true)
 	private double numberOfMinutes;
 
-	@Column(nullable = true)
-	private String ingredients;
-
-	@Column(nullable = true, length = 255)
-	private String instructions;
+//	@Column(nullable = true)
+//	private List<Ingredients> ingredients;
+//
+//	@Column(nullable = true, length = 255)
+//	private List<Instructions> instructions;
 
 	@OneToMany(mappedBy= "recipe")
-	private List<Ingredients> ingredient;
+	private List<Ingredients> ingredients;
+	private List<Instructions> instructions;
 
 	public Recipe() {
 	}
 
-	public Recipe(String title, String description, double numberOfMinutes, String ingredients, String instructions) {
+	public Recipe(String title, String description, double numberOfMinutes, List<Ingredients> ingredients, List<Instructions> instructions) {
 		this.title = title;
 		this.description = description;
 		this.numberOfMinutes = numberOfMinutes;
@@ -89,19 +90,19 @@ public class Recipe {
 		this.numberOfMinutes = numberOfMinutes;
 	}
 	
-	public String getIngredients() {
+	public List<Ingredients> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(String ingredients) {
+	public void setIngredients(List<Ingredients> ingredients) {
 		this.ingredients = ingredients;
 	}
 	
-	public String getInstructions() {
+	public List<Instructions> getInstructions() {
 		return instructions;
 	}
 
-	public void setInstructions(String instructions) {
+	public void setInstructions(List<Instructions> instructions) {
 		this.instructions = instructions;
 	}
 
