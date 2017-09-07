@@ -1,4 +1,4 @@
-package api;
+package com.libertymutual.goforcode.angrycb.api;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -11,8 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import com.libertymutual.goforcode.angrycb.api.CookBookApiController;
-import com.libertymutual.goforcode.angrycb.api.ItemNotFoundException;
 import com.libertymutual.goforcode.angrycb.models.Recipe;
 import com.libertymutual.goforcode.angrycb.repositories.RecipeRepository;
 
