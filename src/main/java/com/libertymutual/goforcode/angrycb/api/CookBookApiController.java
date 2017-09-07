@@ -34,7 +34,7 @@ public class CookBookApiController {
 	private IngredientRepository ingredientRepo;
 	private InstructionRepository instructionRepo;
 	
-	public CookBookApiController(RecipeRepository recipeRepo) {
+	public CookBookApiController(RecipeRepository recipeRepo, InstructionRepository instructionRepo) {
         this.recipeRepo = recipeRepo;
 	}
 
@@ -76,23 +76,23 @@ public class CookBookApiController {
 	}
 	
 	@PostMapping("{ingredientId}/recipe")
-	public Ingredients associateAnIngredient(@PathVariable long ingredientId, @RequestBody Ingredients ingredient) {
+	public Recipe associateAnIngredient(@PathVariable long ingredientId, @RequestBody Ingredients ingredient) {
 		Recipe recipe = recipeRepo.findOne(ingredientId);
 		ingredient = ingredientRepo.findOne(ingredient.getId());
 		recipe.addIngredients(ingredient);
 		recipeRepo.save(recipe);
 		
-		return ingredient;
+		return recipe;
 	}
 	
 	@PostMapping("{instructionId}/recipe")
-	public Instructions associateAnInstruction(@PathVariable long instructionId, @RequestBody Instructions instruction) {
+	public Recipe associateAnInstruction(@PathVariable long instructionId, @RequestBody Instructions instruction) {
 		Recipe recipe = recipeRepo.findOne(instructionId);
 		instruction = instructionRepo.findOne(instruction.getId());
 		recipe.addInstructions(instruction);
 		recipeRepo.save(recipe);
 		
-		return instruction;
+		return recipe;
 	}
 	
 	@ApiOperation(value="Delete an ingredient by ID.")
