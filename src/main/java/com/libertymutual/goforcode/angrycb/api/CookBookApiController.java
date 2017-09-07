@@ -3,6 +3,7 @@ package com.libertymutual.goforcode.angrycb.api;
 import java.util.List;
 
 import org.aspectj.apache.bcel.generic.Instruction;
+import org.postgresql.util.LruCache.CreateAction;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,8 +35,10 @@ public class CookBookApiController {
 	private IngredientRepository ingredientRepo;
 	private InstructionRepository instructionRepo;
 	
-	public CookBookApiController(RecipeRepository recipeRepo, InstructionRepository instructionRepo) {
+	public CookBookApiController(RecipeRepository recipeRepo, IngredientRepository ingredientRepo, InstructionRepository instructionRepo) {
         this.recipeRepo = recipeRepo;
+        this.ingredientRepo = ingredientRepo;
+        this.instructionRepo = instructionRepo;
 	}
 
 	@GetMapping("")
@@ -75,22 +78,22 @@ public class CookBookApiController {
 		return recipeRepo.save(recipe);
 	}
 	
-	@PostMapping("{ingredientId}/recipe")
-	public Recipe associateAnIngredient(@PathVariable long ingredientId, @RequestBody Ingredients ingredient) {
-		Recipe recipe = recipeRepo.findOne(ingredientId);
-		ingredient = ingredientRepo.findOne(ingredient.getId());
-		recipe.addIngredients(ingredient);
-		recipeRepo.save(recipe);
+	@PostMapping("{id}/ingredients")
+	public Recipe createAnIngredient(@PathVariable long id, @RequestBody Ingredients ingredient) {
+		Ingredients newIngredient = new Ingredients(ingredient.getTitle(), ingredient.getDescription(), ingredient.getFoodItem(), ingredient.getMeasureUnit(), ingredient.getQuantity());
+		Recipe recipe = recipeRepo.findOne(id);
+		newIngredient.setRecipe(recipe);
+		ingredientRepo.save(newIngredient);
 		
 		return recipe;
 	}
 	
-	@PostMapping("{instructionId}/recipe")
-	public Recipe associateAnInstruction(@PathVariable long instructionId, @RequestBody Instructions instruction) {
-		Recipe recipe = recipeRepo.findOne(instructionId);
-		instruction = instructionRepo.findOne(instruction.getId());
-		recipe.addInstructions(instruction);
-		recipeRepo.save(recipe);
+	@PostMapping("{id}/instructions")
+	public Recipe createAnInstruction(@PathVariable long id, @RequestBody Instructions instruction) {
+		Instructions newInstruction = new Instructions(instruction.getStep());
+		Recipe recipe = recipeRepo.findOne(id);
+		newInstruction.setRecipe(recipe);
+		instructionRepo.save(newInstruction);
 		
 		return recipe;
 	}

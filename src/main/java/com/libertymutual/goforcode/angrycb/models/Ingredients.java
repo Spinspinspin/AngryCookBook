@@ -56,13 +56,13 @@ public class Ingredients {
 	
 	// getters and setters
 
-	public Long getId() {
-		return ingredientId;
-	}
-
-	public void setId(Long id) {
-		this.ingredientId = ingredientId;
-	}
+//	public Long getId() {
+//		return ingredientId;
+//	}
+//
+//	public void setId(Long id) {
+//		this.ingredientId = ingredientId;
+//	}
 
 //	public List<Ingredients> getIngredients() {
 //		return ingredients;
@@ -91,9 +91,18 @@ public class Ingredients {
 	public double getMeasureUnit() {
 		return measureUnit;
 	}
-
+	
+	
 	public void setMeasureUnit(double measureUnit) {
 		this.measureUnit = measureUnit;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getQuantity() {
@@ -103,4 +112,22 @@ public class Ingredients {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public Long getIngredientId() {
+		return ingredientId;
+	}
+
+	public void setIngredientId(Long ingredientId) {
+		this.ingredientId = ingredientId;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+	
+	
 }
