@@ -39,12 +39,13 @@ public class CookBookApiController {
         this.ingredientRepo = ingredientRepo;
         this.instructionRepo = instructionRepo;
 	}
-
+	@ApiOperation(value="Return a list of recipes.")
 	@GetMapping("")
 	public List<Recipe> getAll() {
 		return recipeRepo.findAll();
 	}
 	
+	@ApiOperation(value="Get a specfic recipe by ID.")
 	@GetMapping ("{id}")
 	public Recipe getOne(@PathVariable long id) throws ItemNotFoundException {
 		Recipe recpie = recipeRepo.findOne(id);
@@ -53,10 +54,14 @@ public class CookBookApiController {
 		}
 		return recpie;
 		}
-
+	
+	@ApiOperation(value="Create a new recipe")
 	@PostMapping("")
 	public Recipe create(@RequestBody Recipe recipe) {
-		return recipeRepo.save(recipe);
+		Recipe newRecipe = new Recipe(recipe.getTitle(), recipe.getdescription(), recipe.getNumberOfMinutes(), recipe.getIngredients(), recipe.getInstructions());
+		recipeRepo.save(recipe);
+				
+		return recipe;
 	}
 	
 	@ApiOperation(value="Delete a recipe by ID.")
@@ -71,12 +76,14 @@ public class CookBookApiController {
         }
     }
 	
+	@ApiOperation(value="Update a recipe by ID.")
 	@PutMapping("{id}")
 	public Recipe update(@RequestBody Recipe recipe, @PathVariable long id) {
 		recipe.setId(id);
 		return recipeRepo.save(recipe);
 	}
-	
+		
+	@ApiOperation(value="Add an ingredient to a recipe.")
 	@PostMapping("{id}/ingredients")
 	public Recipe createAnIngredient(@PathVariable long id, @RequestBody Ingredients ingredient) {
 		Ingredients newIngredient = new Ingredients(ingredient.getTitle(), ingredient.getDescription(), ingredient.getFoodItem(), ingredient.getMeasureUnit(), ingredient.getQuantity());
@@ -87,6 +94,7 @@ public class CookBookApiController {
 		return recipe;
 	}
 	
+	@ApiOperation(value="Add an instruction to a recipe.")
 	@PostMapping("{id}/instructions")
 	public Recipe createAnInstruction(@PathVariable long id, @RequestBody Instructions instruction) {
 		Instructions newInstruction = new Instructions(instruction.getStep());
