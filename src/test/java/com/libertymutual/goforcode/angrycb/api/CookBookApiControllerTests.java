@@ -139,6 +139,39 @@ public class CookBookApiControllerTests {
 	}
 	
 	@Test
+	public void test_getOneIngredients_returns_Recipe_returned_from_repo() throws ItemNotFoundException {
+		// Arrange
+		Recipe roastBeef = new Recipe();
+		Ingredients beef = new Ingredients();
+		when(recipeRepo.findOne(7L)).thenReturn(roastBeef);
+		when(ingredientRepo.findOne(8L)).thenReturn(beef);
+		
+		// Act
+		Recipe actual = controller.getOneIngredients(8L);
+		
+
+		// Assert
+		assertThat(actual).isSameAs(roastBeef);
+		assertThat(8L).isSameAs(beef);
+	}
+	
+	@Test
+	public void test_getOneInstruction_returns_Recipe_returned_from_repo() throws ItemNotFoundException {
+		// Arrange
+		Recipe roastBeef = new Recipe();
+		Instructions stepOne = new Instructions();
+		when(recipeRepo.findOne(7L)).thenReturn(roastBeef);
+		when(instructionRepo.findOne(8L)).thenReturn(stepOne);
+		
+		// Act
+		Recipe actual = controller.getOneInstruction(8L);
+
+		// Assert
+		assertThat(actual).isSameAs(roastBeef);
+		verify(instructionRepo).findOne(8L);
+	}
+	
+	@Test
 	public void test_getOne_returns_Recipe_and_getOne_returns_Ingredient_and_add_adds_the_ingredient_to_the_recipe_and_save_updates_recipeRepo() throws ItemNotFoundException {
 		// Arrange
 		Recipe taco = new Recipe();
