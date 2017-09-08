@@ -15,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "ingredientId")
 @Entity
@@ -43,6 +44,7 @@ public class Ingredients {
 	private String quantity;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JsonIgnore
 	private Recipe recipe;
 
 	public Ingredients() {}

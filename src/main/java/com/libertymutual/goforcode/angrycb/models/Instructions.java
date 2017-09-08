@@ -17,6 +17,7 @@ import org.hibernate.annotations.Cascade;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "instructionId")
 @Entity
@@ -31,7 +32,7 @@ public class Instructions {
 	@Column(nullable = false, length = 255)
 	private String step;
 	
-	
+	@JsonIgnore
 	@ManyToOne (cascade=CascadeType.PERSIST)
 	private Recipe recipe;
 	

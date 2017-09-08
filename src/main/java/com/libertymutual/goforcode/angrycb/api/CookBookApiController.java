@@ -46,16 +46,16 @@ public class CookBookApiController {
 	}
 	
 	@ApiOperation(value="Return a list of ingredients for a specific recipe.")
-    @GetMapping("/{id}/ingredients")
-    public List<Ingredients> getAllIngredients() {
-        return ingredientRepo.findAll();
-    }
-    
-    @ApiOperation(value="Return a list of instructions for a specific recipe.")
-    @GetMapping("/{id}/instructions")
-    public List<Instructions> getAllInstructions() {
-        return instructionRepo.findAll();
-    }
+	@GetMapping("/{id}/ingredients")
+	public List<Ingredients> getIngredientsByRecipeId(@PathVariable long id) {
+		return ingredientRepo.findByRecipeId(id);
+	}
+	
+	@ApiOperation(value="Return a list of instructions for a specific recipe.")
+	@GetMapping("/{id}/instructions")
+	public List<Instructions> getInstructionsByRecipeId(@PathVariable long id) {
+		return instructionRepo.findByRecipeId(id);
+	}
 	
 	@ApiOperation(value="Get a specfic recipe by ID.")
 	@GetMapping ("{id}")
