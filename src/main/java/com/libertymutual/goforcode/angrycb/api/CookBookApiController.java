@@ -68,7 +68,7 @@ public class CookBookApiController {
 		}
 	
 	@ApiOperation(value="Get a specific instruction by instructionId.")
-	@GetMapping("/{id}/instructions/{instructionId}")
+	@GetMapping("/{id}/instructions/{instructionId}")  // I think {instructionId} needs to come out.
 	public Recipe getOneInstruction(@PathVariable long instructionId) throws ItemNotFoundException{
 		Recipe recipe = recipeRepo.findOne(instructionId);
 		if (recipe == null) {
@@ -78,7 +78,7 @@ public class CookBookApiController {
 	}
 	
 	@ApiOperation(value="Get a specific ingredient by ingredientId.")
-	@GetMapping("/{id}/ingredients/{ingredientId}")
+	@GetMapping("/{id}/ingredients/{ingredientId}") //I think {ingredientId} needs to come out.
 	public Recipe getOneIngredients(@PathVariable long ingredientId) throws ItemNotFoundException{
 		Recipe recipe = recipeRepo.findOne(ingredientId);
 		if (recipe == null) {
