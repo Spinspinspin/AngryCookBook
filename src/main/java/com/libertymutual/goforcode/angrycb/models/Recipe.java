@@ -2,6 +2,7 @@ package com.libertymutual.goforcode.angrycb.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,11 +38,11 @@ public class Recipe {
 	@Column(nullable = true)
 	private double numberOfMinutes;
 	
-	@OneToMany(mappedBy= "recipe")
+	@OneToMany(mappedBy= "recipe", cascade = CascadeType.ALL)
 	@Column(nullable = true)
 	private List<Ingredients> ingredients;
 	
-	@OneToMany(mappedBy= "recipe")
+	@OneToMany(mappedBy= "recipe", cascade = CascadeType.ALL)
 	@Column(nullable = true, length = 255)
 	private List<Instructions> instructions;
 
