@@ -48,11 +48,11 @@ public class CookBookApiController {
 	@ApiOperation(value="Get a specfic recipe by ID.")
 	@GetMapping ("{id}")
 	public Recipe getOne(@PathVariable long id) throws ItemNotFoundException {
-		Recipe recpie = recipeRepo.findOne(id);
-		if (recpie == null) {
+		Recipe recipe = recipeRepo.findOne(id);
+		if (recipe == null) {
 			throw new ItemNotFoundException();
 		}
-		return recpie;
+		return recipe;
 		}
 	
 	@ApiOperation(value="Create a new recipe")
