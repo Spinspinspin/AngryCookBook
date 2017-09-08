@@ -27,29 +27,29 @@ public class Ingredients {
 	@SequenceGenerator(name = "ingredient_id_seq", sequenceName="ingredient_id_seq")
 	private Long ingredientId;
 
-	@Column(nullable = false, length = 75)
-	private String title;
-
-	@Column(nullable = true, length = 255)
-	private String description;
+//	@Column(nullable = false, length = 75)
+//	private String title;
+//
+//	@Column(nullable = true, length = 255)
+//	private String description;
 
 	@Column(nullable = false, length = 255)
 	private String foodItem;
 
-	@Column(nullable = false)
-	private double measureUnit;
+	@Column(nullable = true, length = 255)
+	private String measureUnit;
 
 	@Column(nullable = true, length = 255)
-	private int quantity;
+	private String quantity;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Recipe recipe;
 
 	public Ingredients() {}
 
-	public Ingredients(String title, String description, String foodItem, double measureUnit, int quantity) {
-		this.title = title;
-		this.description = description;
+	public Ingredients(String foodItem, String measureUnit, String quantity) {
+//		this.title = title;
+//		this.description = description;
 		this.foodItem = foodItem;
 		this.measureUnit = measureUnit;
 		this.quantity = quantity;
@@ -73,13 +73,13 @@ public class Ingredients {
 //		this.ingredients = ingredients;
 //	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
+//	public String getTitle() {
+//		return title;
+//	}
+//
+//	public void setTitle(String title) {
+//		this.title = title;
+//	}
 
 	public String getFoodItem() {
 		return foodItem;
@@ -89,28 +89,28 @@ public class Ingredients {
 		this.foodItem = foodItem;
 	}
 
-	public double getMeasureUnit() {
+	public String getMeasureUnit() {
 		return measureUnit;
 	}
 	
 	
-	public void setMeasureUnit(double measureUnit) {
+	public void setMeasureUnit(String measureUnit) {
 		this.measureUnit = measureUnit;
 	}
 	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
+//	public String getDescription() {
+//		return description;
+//	}
+//	
+//	public void setDescription(String description) {
+//		this.description = description;
+//	}
 
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 

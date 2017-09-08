@@ -86,7 +86,7 @@ public class CookBookApiController {
 	@ApiOperation(value="Add an ingredient to a recipe.")
 	@PostMapping("{id}/ingredients")
 	public Recipe createAnIngredient(@PathVariable long id, @RequestBody Ingredients ingredient) {
-		Ingredients newIngredient = new Ingredients(ingredient.getTitle(), ingredient.getDescription(), ingredient.getFoodItem(), ingredient.getMeasureUnit(), ingredient.getQuantity());
+		Ingredients newIngredient = new Ingredients(ingredient.getFoodItem(), ingredient.getMeasureUnit(), ingredient.getQuantity());
 		Recipe recipe = recipeRepo.findOne(id);
 		newIngredient.setRecipe(recipe);
 		ingredientRepo.save(newIngredient);
