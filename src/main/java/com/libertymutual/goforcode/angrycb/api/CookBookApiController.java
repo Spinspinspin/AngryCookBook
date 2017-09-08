@@ -45,6 +45,18 @@ public class CookBookApiController {
 		return recipeRepo.findAll();
 	}
 	
+	@ApiOperation(value="Return a list of ingredients for a specific recipe.")
+    @GetMapping("/{id}/ingredients")
+    public List<Ingredients> getAllIngredients() {
+        return ingredientRepo.findAll();
+    }
+    
+    @ApiOperation(value="Return a list of instructions for a specific recipe.")
+    @GetMapping("/{id}/instructions")
+    public List<Instructions> getAllInstructions() {
+        return instructionRepo.findAll();
+    }
+	
 	@ApiOperation(value="Get a specfic recipe by ID.")
 	@GetMapping ("{id}")
 	public Recipe getOne(@PathVariable long id) throws ItemNotFoundException {
