@@ -68,17 +68,17 @@ public class CookBookApiController {
 		}
 	
 	@ApiOperation(value="Get a specific instruction by instructionId.")
-	@GetMapping("/{id}/instructions/{instructionId}")  // I think {instructionId} needs to come out.
-	public Recipe getOneInstruction(@PathVariable long instructionId) throws ItemNotFoundException{
-		Recipe recipe = recipeRepo.findOne(instructionId);
-		if (recipe == null) {
+	@GetMapping("/{id}/instructions/{instructionId}")  
+	public Instructions getOneInstruction(@PathVariable long id) throws ItemNotFoundException{
+		Instructions instruction = instructionRepo.findOne(id);
+		if (instruction == null) {
 			throw new ItemNotFoundException();
 		}
-		return recipe;
+		return instruction;
 	}
 	
 	@ApiOperation(value="Get a specific ingredient by ingredientId.")
-	@GetMapping("/{id}/ingredients/{ingredientId}") //I think {ingredientId} needs to come out.
+	@GetMapping("/{id}/ingredients/{ingredientId}") 
 	public Recipe getOneIngredients(@PathVariable long ingredientId) throws ItemNotFoundException{
 		Recipe recipe = recipeRepo.findOne(ingredientId);
 		if (recipe == null) {
@@ -86,7 +86,6 @@ public class CookBookApiController {
 		}
 		return recipe;
 	}
-	
 	
 	@ApiOperation(value="Create a new recipe")
 	@PostMapping("")
