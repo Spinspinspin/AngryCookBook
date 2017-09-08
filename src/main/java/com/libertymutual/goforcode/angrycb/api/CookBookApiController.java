@@ -55,6 +55,27 @@ public class CookBookApiController {
 		return recipe;
 		}
 	
+	@ApiOperation(value="Get a specific instruction by instructionId.")
+	@GetMapping("/{id}/instructions/{instructionId}")
+	public Recipe getOneInstruction(@PathVariable long instructionId) throws ItemNotFoundException{
+		Recipe recipe = recipeRepo.findOne(instructionId);
+		if (recipe == null) {
+			throw new ItemNotFoundException();
+		}
+		return recipe;
+	}
+	
+	@ApiOperation(value="Get a specific ingredient by ingredientId.")
+	@GetMapping("/{id}/ingredients/{ingredientId}")
+	public Recipe getOneIngredients(@PathVariable long ingredientId) throws ItemNotFoundException{
+		Recipe recipe = recipeRepo.findOne(ingredientId);
+		if (recipe == null) {
+			throw new ItemNotFoundException();
+		}
+		return recipe;
+	}
+	
+	
 	@ApiOperation(value="Create a new recipe")
 	@PostMapping("")
 	public Recipe create(@RequestBody Recipe recipe) {
