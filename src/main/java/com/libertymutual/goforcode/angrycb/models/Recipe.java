@@ -44,7 +44,6 @@ public class Recipe {
 	@Column(nullable = true)
 	private List<Ingredients> ingredients;
 	
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy= "recipe", fetch = FetchType.LAZY) 
 	@Column(nullable = true, length = 255)
 	private List<Instructions> instructions;
