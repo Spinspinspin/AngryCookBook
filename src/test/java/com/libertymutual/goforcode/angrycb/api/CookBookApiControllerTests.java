@@ -147,7 +147,7 @@ public class CookBookApiControllerTests {
 		when(ingredientRepo.findOne(8L)).thenReturn(beef);
 		
 		// Act
-		Ingredients actual = controller.getOneIngredients(8L);
+		Ingredients actual = controller.getOneIngredient(8L);
 		
 
 		// Assert
@@ -156,19 +156,18 @@ public class CookBookApiControllerTests {
 	}
 	
 	@Test
-	public void test_getOneInstruction_returns_Instruction_returned_from_repo() throws ItemNotFoundException {
+	public void test_getOneInstruction_returns_Recipe_returned_from_repo() throws ItemNotFoundException {
 		// Arrange
 		Recipe roastBeef = new Recipe();
-		Instruction step = new Instructions();
+		Instructions stepOne = new Instructions();
 		when(recipeRepo.findOne(7L)).thenReturn(roastBeef);
-		when(instructionRepo.findOne(8L)).thenReturn(step);
+		when(instructionRepo.findOne(8L)).thenReturn(stepOne);
 		
 		// Act
 		Instructions actual = controller.getOneInstruction(8L);
-		
 
 		// Assert
-		assertThat(actual).isSameAs(step);
+		assertThat(actual).isSameAs(stepOne);
 		
 	}
 	
