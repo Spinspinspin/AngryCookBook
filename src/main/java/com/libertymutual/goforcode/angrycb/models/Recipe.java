@@ -2,8 +2,10 @@ package com.libertymutual.goforcode.angrycb.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.aspectj.apache.bcel.generic.Instruction;
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -41,7 +44,7 @@ public class Recipe {
 	@Column(nullable = true)
 	private List<Ingredients> ingredients;
 	
-	@OneToMany(mappedBy= "recipe")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy= "recipe", fetch = FetchType.LAZY) 
 	@Column(nullable = true, length = 255)
 	private List<Instructions> instructions;
 

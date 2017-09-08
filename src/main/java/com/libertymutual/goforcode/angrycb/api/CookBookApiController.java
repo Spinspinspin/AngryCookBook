@@ -98,7 +98,7 @@ public class CookBookApiController {
 	}
 	
 	@ApiOperation(value="Delete an ingredient by ID.")
-	 @DeleteMapping("{ingredientId}")
+	 @DeleteMapping("/{id}/ingredients/{ingredientId}")
 	    public Recipe deleteIngredient(@PathVariable long ingredientId) {
 	        try{
 	            Recipe recipe = recipeRepo.findOne(ingredientId);
@@ -110,7 +110,7 @@ public class CookBookApiController {
 	    }
 
 	@ApiOperation(value="Delete an instruction by ID.")
-	 @DeleteMapping("{instructionId}")
+	 @DeleteMapping("/{id}/instructions/{instructionId}")
 	    public Recipe deleteInstruction(@PathVariable long instructionId) {
 	        try{
 	            Recipe recipe = recipeRepo.findOne(instructionId);

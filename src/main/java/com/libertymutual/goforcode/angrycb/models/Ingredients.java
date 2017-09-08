@@ -2,6 +2,7 @@ package com.libertymutual.goforcode.angrycb.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,7 +42,7 @@ public class Ingredients {
 	@Column(nullable = true, length = 255)
 	private int quantity;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Recipe recipe;
 
 	public Ingredients() {}
