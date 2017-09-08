@@ -139,7 +139,7 @@ public class CookBookApiControllerTests {
 	}
 	
 	@Test
-	public void test_getOneIngredients_returns_Recipe_returned_from_repo() throws ItemNotFoundException {
+	public void test_getOneIngredients_returns_Ingredient_returned_from_repo() throws ItemNotFoundException {
 		// Arrange
 		Recipe roastBeef = new Recipe();
 		Ingredients beef = new Ingredients();
@@ -147,28 +147,67 @@ public class CookBookApiControllerTests {
 		when(ingredientRepo.findOne(8L)).thenReturn(beef);
 		
 		// Act
-		Recipe actual = controller.getOneIngredients(8L);
+		Ingredients actual = controller.getOneIngredients(8L);
 		
 
 		// Assert
-		assertThat(actual).isSameAs(roastBeef);
-		assertThat(8L).isSameAs(beef);
+		assertThat(actual).isSameAs(beef);
+		
 	}
 	
 	@Test
-	public void test_getOneInstruction_returns_Recipe_returned_from_repo() throws ItemNotFoundException {
+	public void test_getOneInstruction_returns_Instruction_returned_from_repo() throws ItemNotFoundException {
 		// Arrange
 		Recipe roastBeef = new Recipe();
-		Instructions stepOne = new Instructions();
+		Instruction step = new Instructions();
 		when(recipeRepo.findOne(7L)).thenReturn(roastBeef);
-		when(instructionRepo.findOne(8L)).thenReturn(stepOne);
+		when(instructionRepo.findOne(8L)).thenReturn(step);
 		
 		// Act
-		Recipe actual = controller.getOneInstruction(8L);
+		Instructions actual = controller.getOneInstruction(8L);
+		
 
 		// Assert
-		assertThat(actual).isSameAs(roastBeef);
-		verify(instructionRepo).findOne(8L);
+		assertThat(actual).isSameAs(step);
+		
+	}
+	
+	@Test
+	public void test_getAllIngredients_returns_list_of_all_ingredients_for_specific_recipe_by_id() throws ItemNotFoundException {
+		
+		// Arrange
+		ArrayList<Ingredients> stuff = new ArrayList<Ingredients>();
+		stuff.add(new Ingredients());
+		stuff.add(new Ingredients());
+		when(ingredientRepo.findByRecipeId(8L)).thenReturn(stuff);
+		
+		// Act
+		List<Ingredients> actual = controller.getIngredientsByRecipeId(8L);
+
+		// Assert
+		
+		assertThat(actual.size()).isEqualTo(2);
+		assertThat(actual.get(1)).isSameAs(stuff.get(1));
+		verify(ingredientRepo).findByRecipeId(8L);
+	}
+	
+	@Test
+	public void test_getAllInstructionss_returns_list_of_all_instructions_for_specific_recipe_by_id() throws ItemNotFoundException {
+		
+		// Arrange
+		ArrayList<Instructions> steps = new ArrayList<Instructions>();
+		steps.add(new Instructions());
+		steps.add(new Instructions());
+		when(instructionRepo.findByRecipeId(8L)).thenReturn(steps);
+		
+		// Act
+		List<Instructions> actual = controller.getInstructionsByRecipeId(8L);
+
+		// Assert
+		
+		assertThat(actual.size()).isEqualTo(2);
+		assertThat(actual.get(1)).isSameAs(steps.get(1));
+		verify(instructionRepo).findByRecipeId(8L);
 	}
 	
 	@Test

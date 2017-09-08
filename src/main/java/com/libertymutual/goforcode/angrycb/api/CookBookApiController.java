@@ -79,12 +79,13 @@ public class CookBookApiController {
 	
 	@ApiOperation(value="Get a specific ingredient by ingredientId.")
 	@GetMapping("/{id}/ingredients/{ingredientId}")
-	public Recipe getOneIngredients(@PathVariable long ingredientId) throws ItemNotFoundException{
-		Recipe recipe = recipeRepo.findOne(ingredientId);
-		if (recipe == null) {
+	public Ingredients getOneIngredients(@PathVariable long id) throws ItemNotFoundException{
+		Ingredients ingredient = ingredientRepo.findOne(id);
+		
+		if (ingredient == null) {
 			throw new ItemNotFoundException();
 		}
-		return recipe;
+		return ingredient;
 	}
 	
 	
