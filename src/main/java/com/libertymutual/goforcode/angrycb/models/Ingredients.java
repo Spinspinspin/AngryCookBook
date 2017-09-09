@@ -22,17 +22,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Ingredients {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ingredient_id_seq")
-	@SequenceGenerator(name = "ingredient_id_seq", sequenceName="ingredient_id_seq")
+	@SequenceGenerator(name = "ingredient_id_seq", sequenceName = "ingredient_id_seq")
 	private Long ingredientId;
-
-//	@Column(nullable = false, length = 75)
-//	private String title;
-//
-//	@Column(nullable = true, length = 255)
-//	private String description;
 
 	@Column(nullable = false, length = 255)
 	private String foodItem;
@@ -42,46 +35,20 @@ public class Ingredients {
 
 	@Column(nullable = true, length = 255)
 	private String quantity;
-	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JsonIgnore
 	private Recipe recipe;
 
-	public Ingredients() {}
+	public Ingredients() {
+	}
 
 	public Ingredients(String foodItem, String measureUnit, String quantity) {
-//		this.title = title;
-//		this.description = description;
+
 		this.foodItem = foodItem;
 		this.measureUnit = measureUnit;
 		this.quantity = quantity;
 	}
-	
-	// getters and setters
-
-//	public Long getId() {
-//		return ingredientId;
-//	}
-//
-//	public void setId(Long id) {
-//		this.ingredientId = ingredientId;
-//	}
-
-//	public List<Ingredients> getIngredients() {
-//		return ingredients;
-//	}
-//
-//	public void setIngredients(List<Ingredients> ingredients) {
-//		this.ingredients = ingredients;
-//	}
-
-//	public String getTitle() {
-//		return title;
-//	}
-//
-//	public void setTitle(String title) {
-//		this.title = title;
-//	}
 
 	public String getFoodItem() {
 		return foodItem;
@@ -94,19 +61,10 @@ public class Ingredients {
 	public String getMeasureUnit() {
 		return measureUnit;
 	}
-	
-	
+
 	public void setMeasureUnit(String measureUnit) {
 		this.measureUnit = measureUnit;
 	}
-	
-//	public String getDescription() {
-//		return description;
-//	}
-//	
-//	public void setDescription(String description) {
-//		this.description = description;
-//	}
 
 	public String getQuantity() {
 		return quantity;
@@ -131,6 +89,5 @@ public class Ingredients {
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
 	}
-	
-	
+
 }

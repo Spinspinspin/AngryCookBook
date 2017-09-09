@@ -28,7 +28,7 @@ public class Recipe {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_id_seq")
-	@SequenceGenerator(name = "recipe_id_seq", sequenceName="recipe_id_seq")
+	@SequenceGenerator(name = "recipe_id_seq", sequenceName = "recipe_id_seq")
 	private Long id;
 
 	@Column(nullable = false, length = 75)
@@ -39,23 +39,20 @@ public class Recipe {
 
 	@Column(nullable = true)
 	private double numberOfMinutes;
-	
-	@OneToMany(mappedBy= "recipe", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
 	@Column(nullable = true)
 	private List<Ingredients> ingredients;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy= "recipe", fetch = FetchType.LAZY) 
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe", fetch = FetchType.LAZY)
 	@Column(nullable = true, length = 255)
 	private List<Instructions> instructions;
-
-//	@OneToMany(mappedBy= "recipe")
-//	private List<Ingredients> ingredients;
-//	private List<Instructions> instructions;
 
 	public Recipe() {
 	}
 
-	public Recipe(String title, String description, double numberOfMinutes, List<Ingredients> ingredients, List<Instructions> instructions) {
+	public Recipe(String title, String description, double numberOfMinutes, List<Ingredients> ingredients,
+			List<Instructions> instructions) {
 		this.title = title;
 		this.description = description;
 		this.numberOfMinutes = numberOfMinutes;
@@ -78,7 +75,7 @@ public class Recipe {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public String getdescription() {
 		return description;
 	}
@@ -86,7 +83,7 @@ public class Recipe {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public double getNumberOfMinutes() {
 		return numberOfMinutes;
 	}
@@ -94,7 +91,7 @@ public class Recipe {
 	public void setNumberOfMinutes(double numberOfMinutes) {
 		this.numberOfMinutes = numberOfMinutes;
 	}
-	
+
 	public List<Ingredients> getIngredients() {
 		return ingredients;
 	}
@@ -102,7 +99,7 @@ public class Recipe {
 	public void setIngredients(List<Ingredients> ingredients) {
 		this.ingredients = ingredients;
 	}
-	
+
 	public List<Instructions> getInstructions() {
 		return instructions;
 	}
@@ -112,36 +109,10 @@ public class Recipe {
 	}
 
 	public void addIngredients(Ingredients ingredient) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void addInstructions(Instructions instruction) {
-		// TODO Auto-generated method stub
-		
+
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -26,31 +26,22 @@ public class Instructions {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "instructions_id_seq")
-	@SequenceGenerator(name = "instructions_id_seq", sequenceName="instructions_id_seq")
+	@SequenceGenerator(name = "instructions_id_seq", sequenceName = "instructions_id_seq")
 	private Long instructionId;
 
 	@Column(nullable = false, length = 255)
 	private String step;
-	
+
 	@JsonIgnore
-	@ManyToOne (cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Recipe recipe;
-	
-	public Instructions() {}
+
+	public Instructions() {
+	}
 
 	public Instructions(String step) {
 		this.step = step;
 	}
-	
-	// getters and setters
-
-//	public Long getId() {
-//		return instructionId;
-//	}
-//
-//	public void setId(Long id) {
-//		this.instructionId = instructionId;
-//	}
 
 	public Long getInstructionId() {
 		return instructionId;
@@ -76,12 +67,4 @@ public class Instructions {
 		this.recipe = recipe;
 	}
 
-//	public List<Instructions> getInstructions() {
-//		return instructions;
-//	}
-//
-//	public void setIngredients(List<Instructions> instructions) {
-//		this.instructions = instructions;
-//
-//}
 }

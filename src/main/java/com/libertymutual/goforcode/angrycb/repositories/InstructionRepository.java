@@ -13,6 +13,5 @@ import com.libertymutual.goforcode.angrycb.models.Instructions;
 
 public interface InstructionRepository extends JpaRepository<Instructions, Long> {
 
-
 	List<Instructions> findByRecipeId(long id);
-	}
+}
