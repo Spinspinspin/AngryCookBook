@@ -269,51 +269,51 @@ public class CookBookApiControllerTests {
     @Test
     public void test_delete_returns_ingredient_deleted_when_found() {
         // Arrange
-        Recipe ingredient = new Recipe();
-        when(recipeRepo.findOne(10L)).thenReturn(ingredient);
+    	Ingredients ingredient = new Ingredients();
+        when(ingredientRepo.findOne(10L)).thenReturn(ingredient);
         // Act
-        Recipe actual = controller.deleteIngredient(10L); 
+        Ingredients actual = controller.deleteIngredient(10L); 
         // Assert
         assertThat(actual).isSameAs(actual);
-        verify(recipeRepo).delete(10L);
-        verify(recipeRepo).findOne(10L);
+        verify(ingredientRepo).delete(10L);
+        verify(ingredientRepo).findOne(10L);
     }
     
     @Test
     public void test_that_null_is_returned_when_delete_ingredient_throws_EmptyResultDataAccessException()
             throws ItemNotFoundException {
         // arrange
-        when(recipeRepo.findOne(13L)).thenThrow(new EmptyResultDataAccessException(0));
+        when(ingredientRepo.findOne(13L)).thenThrow(new EmptyResultDataAccessException(0));
         // Act
-        Recipe actual = controller.deleteIngredient(13L);
+        Ingredients actual = controller.deleteIngredient(13L);
         // Assert
         assertThat(actual).isNull();
-        verify(recipeRepo).findOne(13L);
+        verify(ingredientRepo).findOne(13L);
     }
     
     @Test
     public void test_delete_returns_instruction_deleted_when_found() {
         // Arrange
-        Recipe instruction = new Recipe();
-        when(recipeRepo.findOne(7L)).thenReturn(instruction);
+        Instructions instruction = new Instructions();
+        when(instructionRepo.findOne(7L)).thenReturn(instruction);
         // Act
-        Recipe actual = controller.deleteInstruction(7L); 
+        Instructions actual = controller.deleteInstruction(7L); 
         // Assert
         assertThat(actual).isSameAs(actual);
-        verify(recipeRepo).delete(7L);
-        verify(recipeRepo).findOne(7L);
+        verify(instructionRepo).delete(7L);
+        verify(instructionRepo).findOne(7L);
     }
     
     @Test
     public void test_that_null_is_returned_when_delete_instruction_throws_EmptyResultDataAccessException()
             throws ItemNotFoundException {
         // arrange
-        when(recipeRepo.findOne(9L)).thenThrow(new EmptyResultDataAccessException(0));
+        when(instructionRepo.findOne(9L)).thenThrow(new EmptyResultDataAccessException(0));
         // Act
-        Recipe actual = controller.deleteInstruction(9L);
+        Instructions actual = controller.deleteInstruction(9L);
         // Assert
         assertThat(actual).isNull();
-        verify(recipeRepo).findOne(9L);
+        verify(instructionRepo).findOne(9L);
     }
 	
 }
