@@ -28,12 +28,12 @@ function fillInDetails(data) {
 				<input name= "quantity" id= "quantity" placeholder= "Quantity">
 				<br>
 				<button> Add ingredient </button>
-							
+				</form>			
 				
 			`;
 	
 	for (let instructions of data.instructions) {
-		console.log(instructions)
+		console.log(instructions);
 		html += `
 		<div>
 		<b>${instructions.step}</b>
@@ -44,8 +44,8 @@ function fillInDetails(data) {
 		`;
 	}
 	
-	html += `
-				<form id= "create-instruction-form" methop= "post" action= "/api/recipes/${data.id}/instructions">
+	html += `	<h3> Instructions </h3>
+				<form id= "create-instruction-form" method= "post" action= "/api/recipes/${data.id}/instructions">
 				<input name "step" id= "step" placeholder= "Step"><br>
 				<button>Add Step <button>
 				</form>
