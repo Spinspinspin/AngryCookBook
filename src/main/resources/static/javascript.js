@@ -1,57 +1,5 @@
 const baseurl= 'http://localhost:8080/api/recipes';
 
-function fillInDetails(data){
-	let html = `
-		<h1>${data.title}</h1> 
-		<h2>${data.description}</h2>
-		`;
-	for (let ingredient of data.ingredients){
-		html += `
-			<div>
-				<div>${ingredient.foodItem}</div>
-				<div>${ingredient.measureUnit}</div>
-				<div>${ingredient.quantity}</div>
-				<form class="delete-ingredient-form" method="post" action="/api/recipes/${data.id}/ingredients/${ingredient.ingredientId}">
-				<button>delete ingredient</button>
-				</form>
-			</div>
-		`;
-		}
-	 
-		html += `
-		<form id="create-ingredient-form" method="post" action="/api/recipes/${data.id}/ingredients">
-					<input required name="foodItem" id="foodItem" placeholder="Food Item">
-					<br>
-					<input name="measureUnit" id="measureUnit" placeholder="Measure Unit">
-					<br>
-					<input name="quantity" id="quantity" placeholder="Quantity">
-					<br>
-					<button>Add this Ingredient</button>
-		</form>	
-		`;
-		
-	for (let instruction of data.instructions){
-		html += `
-			<div>
-				<div>${instruction.step}</div>
-				<form class="delete-instruction-form" method="post" action="/api/recipes/${data.id}/instructions/${instruction.instructionId}">
-				<button>delete instruction</button>
-				</form>
-			</div>
-		`;
-		}
-		 
-		html += `
-		<form id="create-instruction-form" method="post" action="/api/recipes/${data.id}/instructions">
-					<input required name="step" id="step" placeholder="Enter Step">
-					<br>
-					<button>Add this Instruction</button>
-		</form>	
-		`;	
-	
-	$('#recipe-detail').html(html);
-}
-
 function createListElement(recipe)	{
 	$('<li></li>')
 	.html(`
@@ -130,6 +78,60 @@ $(document).on('submit', '.delete-instruction-form', function(e){
 		.fail(error => console.error(error));
 });
 
+function fillInDetails(data){
+	let html = `
+		<h1>${data.title}</h1> 
+		<h2>${data.description}</h2>
+		`;
+	for (let ingredient of data.ingredients){
+		html += `
+			<div>
+				<div>${ingredient.foodItem}</div>
+				<div>${ingredient.measureUnit}</div>
+				<div>${ingredient.quantity}</div>
+				<form class="delete-ingredient-form" method="post" action="/api/recipes/${data.id}/ingredients/${ingredient.ingredientId}">
+				<button>delete ingredient</button>
+				</form>
+			</div>
+		`;
+		}
+	 
+		html += `
+		<form id="create-ingredient-form" method="post" action="/api/recipes/${data.id}/ingredients">
+					<input required name="foodItem" id="foodItem" placeholder="Food Item">
+					<br>
+					<input name="measureUnit" id="measureUnit" placeholder="Measure Unit">
+					<br>
+					<input name="quantity" id="quantity" placeholder="Quantity">
+					<br>
+					<button>Add this Ingredient</button>
+		</form>	
+		`;
+		
+	for (let instruction of data.instructions){
+		html += `
+			<div>
+				<div>${instruction.step}</div>
+				<form class="delete-instruction-form" method="post" action="/api/recipes/${data.id}/instructions/${instruction.instructionId}">
+				<button>delete instruction</button>
+				</form>
+			</div>
+		`;
+		}
+		 
+		html += `
+		<form id="create-instruction-form" method="post" action="/api/recipes/${data.id}/instructions">
+					<input required name="step" id="step" placeholder="Enter Step">
+					<br>
+					<button>Add this Instruction</button>
+		</form>	
+		`;	
+	
+	$('#recipe-detail').html(html);
+}
+
+
+
 $('#create-recipe-form').on('submit', function (e){
 	e.preventDefault();
 
@@ -148,8 +150,8 @@ $('#create-recipe-form').on('submit', function (e){
 			contentType: 'application/json'
 	};
 	
-	$.ajax(this.action, ajaxOption)  //selects the url to post 
-		.done(function (recipe) {  //success handler
+	$.ajax(this.action, ajaxOption)  // 'this' selects the url to post
+		.done(function (recipe) {  // success handler
 			createListElement(recipe);
 		})
 		
@@ -165,7 +167,7 @@ $(document).on('submit', '#create-ingredient-form', function(e){
 			measureUnit: $('#measureUnit').val(),
 			quantity: $('#quantity').val()
 	};
-//	console.log(payload);
+	console.log(payload);
 	
 	let ajaxOptions = {
 			type: 'POST',
@@ -187,7 +189,7 @@ $(document).on('submit', '#create-instruction-form', function(e){
 	let payload ={
 			step: $('#step').val()
 	};
-//	console.log(payload);
+	console.log(payload);
 	
 	let ajaxOptions = {
 			type: 'POST',
@@ -205,11 +207,12 @@ $(document).on('submit', '#create-instruction-form', function(e){
 
 $(document).on('click', 'a[data-recipe-id]', function(e){
 	e.preventDefault();
-	const recipeId = $(this).data('recipeId');  //camel case conversion happens here!
+	const recipeId = $(this).data('recipeId');  // camel case conversion happens
+												// here!
 	
 	$.getJSON(baseurl + '/' + recipeId, function (data){
-//		console.log('Data for', recipeId, 'is', data);
-		data.foodItem = data.foodItem || '';   //idiom default value 
+// console.log('Data for', recipeId, 'is', data);
+		data.foodItem = data.foodItem || '';   // idiom default value
 		fillInDetails(data);
 		
 		
